@@ -17,6 +17,7 @@ Click the link above to see the Medical AI Assistant in action.
 ## Features
 
 - **AI Medical Consultation** - Natural language medical Q&A with context-aware responses
+
 - **Medical Record Analysis** - Automated analysis of lab results, prescriptions, and clinical documents
 - **OCR Text Extraction** - Extract text from handwritten or printed medical documents
 - **Medical Research Search** - Query trusted medical databases (PubMed, WHO, CDC) with AI-powered summarization
