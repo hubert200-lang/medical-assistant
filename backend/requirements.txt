@@ -1,0 +1,13 @@
+fastapi
+langchain
+google-generativeai
+tavily-python
+pydantic
+uvicorn
+black
+ruff
+mypy
+pytest
+python-dotenv
+langchain-google-genai
+pillow
