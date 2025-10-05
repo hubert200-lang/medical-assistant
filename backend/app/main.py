@@ -1,5 +1,4 @@
-
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.routes import health, analysis, research
@@ -27,13 +26,17 @@ app.include_router(research.router, prefix="/api")
 
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    chain = get_chat_chain(request.language)
-    response = await chain.ainvoke({"question": request.message})
-    return ChatResponse(
-        response=response.content,
-        language=request.language,
-        timestamp=datetime.utcnow().isoformat()
-    )
+    try:
+        chain = get_chat_chain(request.language)
+        response = await chain.ainvoke({"question": request.message})
+        return ChatResponse(
+            response=response.content,
+            language=request.language,
+            timestamp=datetime.utcnow().isoformat()
+        )
+    except Exception as e:
+        print(f"Error in chat: {str(e)}")  # For debugging
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn
